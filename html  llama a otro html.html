@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documento Principal</title>
+</head>
+<body>
+<h1>Documento Principal</h1>
+<p>A continuación se muestra un documento HTML5 incrustado:</p>
+<iframe id="miIframe" width="600" height="400"></iframe>
+
+<script>
+// Función para cargar el contenido del iframe al producirse un evento
+function cargarContenidoEnIframe() {
+    document.getElementById("miIframe").src = "data:text/html;charset=utf-8," + encodeURIComponent(
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Documento Incrustado</title>
+        </head>
+        <body>
+        <h1>Documento Incrustado</h1>
+        <p>Este es un documento HTML5 incrustado dentro del documento principal.</p>
+        </body>
+        </html>
+    );
+}
+
+// Ejemplo: Cargar el contenido del iframe al hacer clic en un botón
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("botonCargar").addEventListener("click", cargarContenidoEnIframe(miIframe));
+});
+</script>
+
+<button id="botonCargar">Cargar Contenido en Iframe</button>
+</body>
+</html>

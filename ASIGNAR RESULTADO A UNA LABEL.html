@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Valor de Función a Label</title>
+</head>
+<body>
+    <label id="resultado"></label>
+
+    <script>
+        // Definimos una función que devuelve un valor
+        function calcularResultado() {
+            return 5 + 3;
+        }
+
+        // Seleccionamos el elemento label
+        const labelResultado = document.getElementById('resultado');
+
+        // Asignamos el valor de la función al contenido del label
+        labelResultado.textContent = calcularResultado();
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+	<style>
+        	body {
+        background: linear-gradient(to right, blue, gray, green);
+        color: white;
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+	/*esta es para el hr*/
+	hr {
+  width: 100%;
+  height: 4px;
+  /*background: linear-gradient(to right, #ff8a00, #da1b60, #00d4ff);*/
+  background: linear-gradient(to right, green, gray, blue);
+  border: none;
+  animation: slide 5s infinite;
+}
+
+@keyframes slide {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* este es para el footer-----------------------------------------------------
+footer p {
+    font-size: small;
+    animation: animateText 2s infinite;
+}
+
+@keyframes animateText {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}-------------------------------------------------------------------------*/
+footer p {
+  display:flex;
+  justify-content: space-between;
+
+  font-family: Arial, sans-serif;
+  font-size: 0.7em;
+  
+  animation-name: moverElemento;
+  animation-duration: 30s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+
+@keyframes moverElemento {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(100px); }
+  100% { transform: translateX(0); }
+}
+select {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+	width: 50%;
+    height: 30%;
+}
+
+option {
+    background-color: #fff;
+    color: #333;
+	font-bolt:0.5em
+}
+#tempInput{
+     width: 30%;
+    height: 30%;
+}
+#resultado{
+  padding: 40px;
+  margin: 40px
+  display:flex;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+  font-size: 0.95em;
+  border: 0.5px solid #ccc;
+  text-align: left;
+}
+}
+	</style>
+
+</head>
+<body><!-- COMIENZA EL CUERPO DEL DOC -->
+<h1>Conversor de Temperaturas</h1>
+<div>
+<!-- ETIQUETA PARA SELECCIONAR EL GRADO A CONVERTIR-->
+<label for="TempCovert">Selecciona categoria Temperatura:</label>
+<select id="TempCovert"  onchange="mostrarContenido()">
+  <option value="default" selected>Select Temp..</option>
+  <option value="celsius">CELSIUS</option>
+  <option value="farenheit">FARENHEIT</option>
+  <option value="kelvin">KELVIN</option>
+  <option value="rankine">RANKINE</option>
+ </select>
+   </div>
+   <div>
+ <!-- ESTE SCRIPT ES PARA EL SELECT MUESTRE EL VALOR POR DEFECTO
+   <script> 
+  document.addEventListener("DOMContentLoaded", function() {
+    var selectElement = document.getElementById("TempCovert");
+    
+   selectElement.addEventListener("change", function() {
+       if (selectElement.value === "default") {
+         //   alert("Por favor selecciona una Temperatura válida.");
+           selectElement.selectedIndex = 0; // Volver al valor por defecto
+        }
+  });
+})
+</script>
+-->
+</div>
+
+ <div id="Linea1">
+<hr><!-- AQUI ESTA LINEA DEBAJO DE LA SELECCION-->
+</div>
+ <!-- TEXTO DE INTRODUSCA EL VALOR DE LA TEMP --> 
+
+<div id="TextIntro"><!-- div con CSS -->  
+    <div id="contenidoInicio" style="display:block;">
+        Introduzca el valor en:
+    </div>
+	<div id="contenido1Celsius" style="display:none;">
+        Introduzca el valor en: Celsius
+    </div>
+    <div id="contenido2Farenheit" style="display:none;">
+        Introduzca el valor en: Farenheit
+    </div>
+	<div id="contenido3Kelvin" style="display:none;">
+        Introduzca el valor en: Kelvin
+    </div>
+	<div id="contenido4Rankine" style="display:none;">
+        Introduzca el valor en: Rankine
+    </div>
+		
+</div>
+
+<div id="LabelButton"><!-- div para introducir el valor y el button para llamar la funcion -->  
+    <label for="tempInput"></label>
+    <input type="number" id="tempInput">
+ 
+	<button onclick="convertirTemperatura()">Convertir</button>
+<div>
+<hr><!-- AQUI ESTA LINEA DEBAJO DE LA SELECCION-->
+</div>
+<div>
+<p id="resultado"></p><!-- AQUI tiene la salida los resultados de la conversion-->
+
+</div>
+
+	<!-- FUNCION PARA QUE CAMBIE EL TITULO DE INTRODUZCA EL VALOR DE LA TEMP-->   
+	<script>
+        function mostrarContenido() {
+            var selector = document.getElementById("TempCovert");
+            var opcionSeleccionada = selector.value;
+
+            if (opcionSeleccionada === "celsius") {
+                document.getElementById("contenido1Celsius").style.display = "block";
+                document.getElementById("contenido2Farenheit").style.display = "none";
+				document.getElementById("contenido3Kelvin").style.display = "none";
+				document.getElementById("contenido4Rankine").style.display = "none";
+				document.getElementById("contenidoInicio").style.display = "none";
+            } else if(opcionSeleccionada === "farenheit") {
+                document.getElementById("contenido1Celsius").style.display = "none";
+                document.getElementById("contenido2Farenheit").style.display = "block";
+				document.getElementById("contenido3Kelvin").style.display = "none";
+				document.getElementById("contenido4Rankine").style.display = "none";
+				document.getElementById("contenidoInicio").style.display = "none";
+            }else if(opcionSeleccionada === "kelvin") {
+                document.getElementById("contenido1Celsius").style.display = "none";
+                document.getElementById("contenido2Farenheit").style.display = "none";
+				document.getElementById("contenido3Kelvin").style.display = "block";
+				document.getElementById("contenido4Rankine").style.display = "none";
+				document.getElementById("contenidoInicio").style.display = "none";
+            }else if(opcionSeleccionada === "rankine") {
+                document.getElementById("contenido1Celsius").style.display = "none";
+                document.getElementById("contenido2Farenheit").style.display = "none";
+				document.getElementById("contenido3Kelvin").style.display = "none";
+				document.getElementById("contenido4Rankine").style.display = "block";
+				document.getElementById("contenidoInicio").style.display = "none";
+            }
+        }
+    </script>
+	</div>
+	
+<script> <!-- esta es la ultima funcion que busque en el AI-->
+function convertirTemperatura() {
+    var unidad = document.getElementById("TempCovert").value;
+    var temperatura = parseFloat(document.getElementById("tempInput").value);
+    var resultado = "";
+
+    if (unidad === "celsius") {
+        var farenheit = (temperatura * 9/5) + 32;
+        var kelvin = temperatura + 273.15;
+        var rankine = (temperatura + 273.15) * 9/5;
+        
+        resultado = "Temperatura en Fahrenheit: " + farenheit.toFixed(2) + "<br>" +
+                    "Temperatura en Kelvin: " + kelvin.toFixed(2) + "<br>" +
+                    "Temperatura en Rankine: " + rankine.toFixed(2);
+    } else if (unidad === "farenheit") {
+        var celsius = (5/9) * (temperatura - 32);
+        var kelvin = (temperatura - 32) * (5/9) + 273.15;
+        var rankine = temperatura + 459.67;
+
+        resultado = "Temperatura en Celsius: " + celsius.toFixed(2) + "<br>" +
+                    "Temperatura en Kelvin: " + kelvin.toFixed(2) + "<br>" +
+                    "Temperatura en Rankine: " + rankine.toFixed(2);
+    } else if (unidad === "kelvin") {
+        var celsius = temperatura - 273.15;
+        var farenheit = (temperatura - 273.15) * (9/5) + 32;
+        var rankine = temperatura * (9/5);
+
+        resultado = "Temperatura en Celsius: " + celsius.toFixed(2) + "<br>" +
+                    "Temperatura en Fahrenheit: " + farenheit.toFixed(2) + "<br>" +
+                    "Temperatura en Rankine: " + rankine.toFixed(2);
+    } else if (unidad === "rankine") {
+        var celsius = (temperatura - 491.67) * (5/9);
+        var farenheit = temperatura - 459.67;
+        var kelvin = temperatura * (5/9);
+
+        resultado = "Temperatura en Celsius: " + celsius.toFixed(2) + "<br>" + 
+                    "Temperatura en Fahrenheit: " + farenheit.toFixed(2) + "<br>" +
+                    "Temperatura en Kelvin: " + kelvin.toFixed(2);
+    }
+
+    document.getElementById("resultado").innerHTML = resultado;
+}
+
+</script>
+</body><!-- TERMINA EL CUERPO DEL DOC -->
+<footer>
+<hr>
+<p>Created by: Ing.Walvis Ismael Cuenca Rodriguez
+</footer>
+</html>

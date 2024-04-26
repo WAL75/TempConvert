@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector Select con Bloque If-Then-Else</title>
+</head>
+<body>
+    <select id="opciones" onchange="mostrarContenido()">
+        <option value="opcion1">Opción 1</option>
+        <option value="opcion2">Opción 2</option>
+    </select>
+
+    <div id="contenido1" style="display:none;">
+        Contenido para la Opción 1
+    </div>
+    <div id="contenido2" style="display:none;">
+        Contenido para la Opción 2
+    </div>
+
+    <script>
+        function mostrarContenido() {
+            var selector = document.getElementById("opciones");
+            var opcionSeleccionada = selector.value;
+
+            if (opcionSeleccionada === "opcion1") {
+                document.getElementById("contenido1").style.display = "block";
+                document.getElementById("contenido2").style.display = "none";
+            } else if (opcionSeleccionada === "opcion2") {
+                document.getElementById("contenido1").style.display = "none";
+                document.getElementById("contenido2").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

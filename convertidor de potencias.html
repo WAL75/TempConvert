@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Potencia</title>
+    <style>
+        body {
+            font-family: 'serif', 'digital-7';
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversor de Potencia</h1>
+    <p>Introduce la potencia en caballos de fuerza:</p>
+    <input type="number" id="hpInput">
+    <button onclick="convertir()">Convertir</button>
+    <p>La potencia en caballos de vapor es: <span id="cvOutput"></span> CV</p>
+
+    <script>
+        function convertir() {
+            const hp = document.getElementById('hpInput').value;
+            const cv = hp * 0.9863;
+            document.getElementById('cvOutput').textContent = cv.toFixed(2);
+        }
+    </script>
+</body>
+</html>

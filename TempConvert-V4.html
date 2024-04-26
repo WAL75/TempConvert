@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Temperatura</title>
+	<style><!-- COMIENZA EL ESTILO -->
+        body {
+		   
+            background: linear-gradient(to right, blue, gray, green);
+            color: white;
+            text-align: center;
+		    font-family: Arial, sans-serif;
+        }
+         #TextIntro {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-70%, -140%);
+    text-align: center;
+    font-size: 10px;
+       }
+-#LabelButton{
+   position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-20%, -5%);  
+  
+}
+#Linea1{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-20%, -5%); 
+    }
+    
+	</style><!-- TERMINA EL ESTILO -->
+
+</head>
+<body><!-- COMIENZA EL CUERPO DEL DOC -->
+<h1>Conversor de Temperaturas</h1>
+<div>
+<!-- ETIQUETA PARA SELECCIONAR EL GRADO -->
+<label for="TempCovert">Selecciona categoria Temperatura:</label>
+<select id="TempCovert" onchange="mostrarContenido()">
+  <option value="celsius">CELSIUS</option>
+  <option value="farenheit">FARENHEIT</option>
+  <option value="kelvin">KELVIN</option>
+  <option value="rankine">RANKINE</option>
+ </select>
+   </div>
+ <!-- TEXTO DE INTRODUSCA EL VALOR DE LA TEMP -->   
+<div id="TextIntro"><!-- div con CSS -->  
+    <div id="contenidoInicio" style="display:block;">
+        Necesita seleccionar una categoría:
+    </div>
+	<div id="contenido1Celsius" style="display:none;">
+        Introduzca el valor en Celsius:
+    </div>
+    <div id="contenido2Farenheit" style="display:none;">
+        Introduzca el valor en Farenheit:
+    </div>
+	<div id="contenido3Kelvin" style="display:none;">
+        Introduzca el valor en Kelvin:
+    </div>
+	<div id="contenido4Rankine" style="display:none;">
+        Introduzca el valor en Rankine:
+    </div>
+	<br>
+	
+</div>
+<div id="LabelButton"><!-- div para introducir el valor y el button para llamar la funcion -->  
+    <label for="tempInput"></label>
+    <input type="number" id="tempInput">
+ 
+	<button onclick="convertirTemperatura()">Convertir</button>
+    <p id="resultado"></p>
+
+</div>
+<div id="Linea1">
+<hr>
+</div>
+<div>
+
+	<!-- FUNCION PARA QUE CAMBIE EL TITULO DE INTRODUZCA EL VALOR DE LA TEMP-->   
+	<script>
+        function mostrarContenido() {
+            var selector = document.getElementById("TempCovert");
+            var opcionSeleccionada = selector.value;
+
+            if (opcionSeleccionada === "celsius") {
+                document.getElementById("contenido1Celsius").style.display = "block";
+                document.getElementById("contenido2Farenheit").style.display = "none";
+				document.getElementById("contenido3Kelvin").style.display = "none";
+				document.getElementById("contenido4Rankine").style.display = "none";
+				document.getElementById("contenidoInicio").style.display = "none";
+            } else if(opcionSeleccionada === "farenheit") {
+                document.getElementById("contenido1Celsius").style.display = "none";
+                document.getElementById("contenido2Farenheit").style.display = "block";
+				document.getElementById("contenido3Kelvin").style.display = "none";
+				document.getElementById("contenido4Rankine").style.display = "none";
+				document.getElementById("contenidoInicio").style.display = "none";
+            }else if(opcionSeleccionada === "kelvin") {
+                document.getElementById("contenido1Celsius").style.display = "none";
+                document.getElementById("contenido2Farenheit").style.display = "none";
+				document.getElementById("contenido3Kelvin").style.display = "block";
+				document.getElementById("contenido4Rankine").style.display = "none";
+				document.getElementById("contenidoInicio").style.display = "none";
+            }else if(opcionSeleccionada === "rankine") {
+                document.getElementById("contenido1Celsius").style.display = "none";
+                document.getElementById("contenido2Farenheit").style.display = "none";
+				document.getElementById("contenido3Kelvin").style.display = "none";
+				document.getElementById("contenido4Rankine").style.display = "block";
+				document.getElementById("contenidoInicio").style.display = "none";
+            }
+        }
+    </script>
+	</div>
+	
+<script> <!-- esta es la ultima funcion que busque en el AI-->
+function convertirTemperatura() {
+    var unidad = document.getElementById("TempCovert").value;
+    
+	// Realizar conversión a partir de Celsius***************************************
+	var celsius = parseFloat(document.getElementById("tempInput").value);
+    var farenheit = (celsius * 9/5) + 32;
+    var kelvin = celsius + 273.15;
+    var rankine = (celsius + 273.15) * 9/5;
+    
+    if (unidad === "celsius") {
+        document.getElementById("resultado").innerHTML = 
+            "La temperatura en grados Fahrenheit es: " + farenheit.toFixed(2) + "<br>" +
+            "La temperatura en grados Kelvin es: " + kelvin.toFixed(2) + "<br>" +
+            "La temperatura en grados Rankine es: " + rankine.toFixed(2);
+    //**********************************************************************************
+	// Realizar conversión a partir de Fahrenheit***************************************
+	} else if (unidad === "farenheit") {
+    var farenheit = parseFloat(document.getElementById("tempInput").value);
+    var celsius = (5/9) * (farenheit - 32);
+    var kelvin = (farenheit - 32) * (5/9) + 273.15;
+    var rankine = farenheit + 459.67;
+	                                  // Esta es la salida en pantalla para farenheit***
+	if (unidad === "farenheit") {
+        document.getElementById("resultado").innerHTML = 
+            "La temperatura en grados Celsius es: " + celsius.toFixed(2) + "<br>" +
+            "La temperatura en grados Kelvin es: " + kelvin.toFixed(2) + "<br>" +
+            "La temperatura en grados Rankine es: " + rankine.toFixed(2);
+    //***********************************************************************************
+	// Realizar conversión a partir de kelvin********************************************
+	} else if (unidad === "kelvin") {
+    var kelvin = parseFloat(document.getElementById("tempInput").value);
+	var celsius = kelvin - 273.15;
+	var farenheit = (kelvin - 273.15) * (9/5) + 32;
+	var rankine = kelvin * (9/5);
+                                     // Esta es la salida en pantalla para Kelvin*********
+	if (unidad === "kelvin") {
+        document.getElementById("resultado").innerHTML = 
+            "La temperatura en grados Celsius es: " + celsius.toFixed(2) + "<br>" +
+            "La temperatura en grados farenheit es: " + farenheit.toFixed(2) + "<br>" +
+            "La temperatura en grados Rankine es: " + rankine.toFixed(2);
+	//************************************************************************************
+	 // Realizar conversión a partir de Rankine*******************************************
+	} else if (unidad === "rankine") {
+    var rankine = parseFloat(document.getElementById("tempInput").value);   
+	var celsius =(rankine - 491.67) * (5/9);
+	var farenheit =rankine - 459.67;
+	var kelvin =rankine * (5/9);
+	                                 // Esta es la salida en pantalla para rankine*********
+    if (unidad === "rankine") {
+        document.getElementById("resultado").innerHTML = 
+            "La temperatura en grados Celsius es: " + celsius.toFixed(2) + "<br>" +
+            "La temperatura en grados farenheit es: " + farenheit.toFixed(2) + "<br>" +
+            "La temperatura en grados kelvin es: " + kelvin.toFixed(2);
+	
+	}
+}
+
+
+}
+</script>
+
+</body>
+</html>

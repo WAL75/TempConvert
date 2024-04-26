@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversor de Temperatura</title>
+    <style>
+        body {
+            background: linear-gradient(to right, green, blue);
+            color: white;
+            text-align: center;
+            font-family: DS-Digital;
+        }
+		
+		@font-fase{
+		font-family: DS-Digital;
+		src: url('file:\\\D:\Mis%20documentos\WCR\APPS-Dev\DS-Digital.TTF');
+		
+		
+		
+		
+		}
+    </style>
+    <script>
+        function convertirTemperatura() {
+            var celsius = document.getElementById("celsius").value;
+            var fahrenheit = (celsius * 9/5) + 32;
+            var kelvin = parseFloat(celsius) + 273.15;
+            var rankine = (parseFloat(celsius) + 273.15) * 9/5;
+
+            document.getElementById("resultadoFahrenheit").innerHTML = "La temperatura en grados Fahrenheit es: " + fahrenheit.toFixed(2);
+            document.getElementById("resultadoKelvin").innerHTML = "La temperatura en grados Kelvin es: " + kelvin.toFixed(2);
+            document.getElementById("resultadoRankine").innerHTML = "La temperatura en grados Rankine es: " + rankine.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Conversor de Temperatura</h1>
+    <label for="celsius">Ingrese la temperatura en grados Celsius:</label>
+    <input type="number" id="celsius">
+    <button onclick="convertirTemperatura()">Convertir</button>
+    <p id="resultadoFahrenheit"></p>
+    <p id="resultadoKelvin"></p>
+    <p id="resultadoRankine"></p>
+</body>
+</html>
