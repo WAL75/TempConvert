@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        .alternating {
+  animation-name: alternating-text;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+@keyframes alternating-text {
+  90% {
+    display: none;
+  }
+}
+ </style>
+</head>
+<body>
+    <p>I love coding in <span class="alternating" id="alternating-text"></span>.</p>   
+
+<script>
+    const texts = ['Java', 'Python', 'C', 'C++', 'C#', 'Javascript'];
+    const element = document.getElementById('alternating-text');
+    
+    let i = 0;
+    const listener = e => {
+      i = i < texts.length - 1 ? i + 1 : 0;
+      element.innerHTML = texts[i];
+    };
+    
+    element.innerHTML = texts[0];
+    element.addEventListener('animationiteration', listener, false);
+
+</script>
+
+</body>
+</html>
